@@ -1,0 +1,32 @@
+# Ignorar arquivos e pastas gerados automaticamente
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+
+# Ignorar arquivos específicos
+Thumbs.db
+.DS_Store
+
+# Ignorar arquivos de build e logs
+*.apk
+*.unitypackage
+*.log
+
+# Ignorar arquivos de dados gerados pelo Unity
+/*.asset
+/*.unity
+/*.meta
+
+# Ignorar pasta do sistema de pacotes do Unity (Unity Package Manager)
+/Packages/
+
+# Ignorar arquivos específicos do Visual Studio (opcional)
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.unityproj
+*.csproj
+*.pdb
+*.vs/
