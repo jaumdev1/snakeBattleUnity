@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelGrid : MonoBehaviour
@@ -9,7 +10,7 @@ public class LevelGrid : MonoBehaviour
     private int width;
     private int height;
     public float foodSize = 2.0f;
-    private GameObject foodGameObject;
+    private List<GameObject> foodList;  
     private Snake snake;
     public void Setup(Snake snake)
     {
@@ -19,16 +20,18 @@ public class LevelGrid : MonoBehaviour
     {
         this.width = width;
         this.height = height;
-
+        this.foodList = new List<GameObject>();
         SpawnFood();
+   
 
     }
 
     private void SpawnFood()
     {
+        GameObject foodGameObject;
         int randomColorIndex = Random.Range(0, 2);
-        int randomX = Random.Range(0, width);
-        int randomY = Random.Range(0, height);
+        int randomX = Random.Range(-100, width);
+        int randomY = Random.Range(-50, height);
         foodGridPosition = new Vector2Int(randomX - randomX % 2, randomY - randomY % 2);
         //foodGridPosition = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
 
@@ -44,18 +47,32 @@ public class LevelGrid : MonoBehaviour
 
         // Atribua a posição da comida para o centro da célula do grid.
         foodGameObject.transform.position = centerOfCell;
+        foodList.Add(foodGameObject);
 
-         
+
     }
-    public void SnakeMoved(Vector2Int snakeGridPositon)
+    public bool TryEatFoodSnakeMoved(Vector2Int snakeGridPosition)
     {
-        if(snakeGridPositon == foodGridPosition)
-        {
-            Object.Destroy(foodGameObject);
-            SpawnFood();
 
+        var food = foodList.Where(p => p.transform.position.x == snakeGridPosition.x && p.transform.position.y == snakeGridPosition.y).SingleOrDefault();
+        if (food != null)
+        {
+            foodList.Remove(food);
+            Object.Destroy(food);
+
+            SpawnFood();
+            return true;
 
         }
+        else
+        {
+            return false;
+        }
+
     }
+  
+
+    
+
 }
 
