@@ -71,14 +71,14 @@ public class Snake : MonoBehaviour, ISnake
 
 
             gridMoveTimer = gridMoveTimerMax;
-            //if (Tails.Count > 0)
-            //{
-            //    var tai = Tails[0];
-            //    Tails.Remove(tai);
-            //    Destroy(tai);
-            //}
+            if (Tails.Count > 0)
+            {
+                var tai = Tails[0];
+                Tails.Remove(tai);
+                Destroy(tai);
+            }
 
-            //CreateTailSprite(gridPosition, 0);
+            CreateTailSprite(gridPosition, 0);
 
             if (pendingDirections.Count > 0)
             {

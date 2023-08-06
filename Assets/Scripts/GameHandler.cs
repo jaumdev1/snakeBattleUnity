@@ -11,7 +11,6 @@ public class GameHandler : MonoBehaviour
     private LevelGrid levelGrid;
     [SerializeField]
     private GameObject SnakePrefab;
-
     public static LevelGrid LevelGrid;
     
     private void Start()
@@ -19,10 +18,10 @@ public class GameHandler : MonoBehaviour
         Debug.Log("start!");
 
         levelGrid = new LevelGrid(100, 50);
-        //snake.Setup(levelGrid);
 
-        //snakeList.Add(snake);
-        Instantiate(SnakePrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0));
+       
+        Instantiate(SnakePrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0)).GetComponent<Snake>()
+        .Setup(levelGrid);
 
     }
 
