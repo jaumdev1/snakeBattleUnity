@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LevelGrid : MonoBehaviour
+public class LevelGrid
 {
 
     private Vector2Int foodGridPosition;
     private int width;
     private int height;
     public float foodSize = 2.0f;
-    private List<GameObject> foodList;  
-    private Snake snake;
-    public void Setup(Snake snake)
-    {
-        this.snake = snake;
-    }
+    public List<GameObject> foodList;  
+
+
     public LevelGrid(int width, int height)
     {
         this.width = width;

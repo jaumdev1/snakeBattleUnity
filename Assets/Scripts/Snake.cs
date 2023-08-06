@@ -64,34 +64,35 @@ public class Snake : MonoBehaviour, ISnake
 
     private void FixedUpdate()
     {
-        gridMoveTimer += Time.fixedDeltaTime;
+        gridMoveTimer -= Time.fixedDeltaTime;
 
-        if (gridMoveTimer >= gridMoveTimerMax)
+        if (gridMoveTimer <=0f)
         {
 
-         
-            tailColor = Color.magenta;
-            if(Tails.Count > 0) {
-            var tai = Tails[0];
-            Tails.Remove(tai);
-            Destroy(tai);
-            }
 
-            CreateTailSprite(gridPosition, 0);
-          
+            gridMoveTimer = gridMoveTimerMax;
+            //if (Tails.Count > 0)
+            //{
+            //    var tai = Tails[0];
+            //    Tails.Remove(tai);
+            //    Destroy(tai);
+            //}
+
+            //CreateTailSprite(gridPosition, 0);
+
             if (pendingDirections.Count > 0)
             {
                 gridMoveDirection = pendingDirections.Dequeue();
-               
-               
+
+
             }
-         
+
             UpdateGridPosition();
-  
-            gridMoveTimer -= gridMoveTimerMax;
+
+          
 
         }
-       
+
 
     }
 
@@ -99,14 +100,15 @@ public class Snake : MonoBehaviour, ISnake
     {
         
         Vector2Int nextGridPosition = gridPosition + (gridMoveDirection * 2);
-        transform.position = new Vector3(nextGridPosition.x, nextGridPosition.y, 0f);
+        //transform.position = new Vector3(nextGridPosition.x, nextGridPosition.y, 0f);
         float angle = Mathf.Atan2(gridMoveDirection.y, gridMoveDirection.x) * Mathf.Rad2Deg;
 
         //angle += 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        gridPosition = nextGridPosition;
+        this.gameObject.transform.position = new Vector3(nextGridPosition.x, nextGridPosition.y);
+        
 
-
-         gridPosition = nextGridPosition;
          bool SnakeAte =  levelGrid.TryEatFoodSnakeMoved(gridPosition);
         if (SnakeAte)            
             CreateTailSprite(gridPosition, 1);

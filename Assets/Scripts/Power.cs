@@ -18,7 +18,7 @@ public class Power : MonoBehaviour, IPower
         Vector3 nextGridPosition = this.gameObject.transform.position + (this.gameObject.transform.right * 10);
         this.gameObject.transform.position = nextGridPosition;
         
-        if(size > 20){
+        if(size > 10){
             Object.Destroy(this.gameObject);
         }
         size++;
