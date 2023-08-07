@@ -12,16 +12,21 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject SnakePrefab;
     public static LevelGrid LevelGrid;
-    
+    private int teste = 0;
+    private void Awake()
+    {
+
+        
+    }
+
     private void Start()
     {
         Debug.Log("start!");
 
         levelGrid = new LevelGrid(100, 50);
-
-       
-        Instantiate(SnakePrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0)).GetComponent<Snake>()
-        .Setup(levelGrid);
+        Instantiate(SnakePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)).GetComponent<Snake>()
+      .Setup(levelGrid);
+    
 
     }
 
@@ -29,6 +34,11 @@ public class GameHandler : MonoBehaviour
     void Update()
     {
 
+        if (teste == 10) { 
+        Instantiate(SnakePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)).GetComponent<Snake>()
+        .Setup(levelGrid);
+        }
+        teste++;
     }
     
 }

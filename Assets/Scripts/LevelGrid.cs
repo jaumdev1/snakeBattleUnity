@@ -18,7 +18,13 @@ public class LevelGrid
         this.width = width;
         this.height = height;
         this.foodList = new List<GameObject>();
-        SpawnFood();
+        var i = 0;
+        while (i < 10)
+        {
+            SpawnFood();
+            i++;
+        }
+        
    
 
     }

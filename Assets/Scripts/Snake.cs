@@ -172,9 +172,13 @@ public class Snake : MonoBehaviour, ISnake
         Vector3 scale = Vector3.one * 0.5f;
         Color color = Color.white;
 
-
+        int i = 0;
+        
         var tail = FunctionTime.Create(positionVector, scale, gridMoveTimerMax, x);
         Tails.Add(tail);
+       
+        
+
     }
 
 
